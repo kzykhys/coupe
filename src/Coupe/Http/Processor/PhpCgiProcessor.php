@@ -20,7 +20,7 @@ class PhpCgiProcessor implements ProcessorInterface
      */
     public function execute(\SplFileInfo $path, Request $request)
     {
-        $bin = PHP_BINDIR . '/php-cgi';
+        $bin = dirname(PHP_BINARY) . '/php-cgi';
 
         $process = new Process(
             $bin . ' -f ' . $path->getRealPath(),

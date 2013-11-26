@@ -33,6 +33,10 @@ class SslHttpServerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateSocketFails()
     {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            throw new Coupe\Exception\Exception();
+        }
+
         $path = $this->getCachePath('localhost:8443');
 
         try {

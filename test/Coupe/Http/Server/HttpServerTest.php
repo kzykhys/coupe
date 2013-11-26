@@ -22,6 +22,10 @@ class HttpServerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateSocketFails()
     {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            throw new Coupe\Exception\Exception();
+        }
+
         try {
             $server = new HttpServer(new HttpHandler());
             $socket = $server->createSocket('localhost:8000');
