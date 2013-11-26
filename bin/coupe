@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+
+use Coupe\Console\Command\PharCommand;
+use Coupe\Console\Command\StartCommand;
+use Symfony\Component\Console\Application;
+
+if (PHP_SAPI !== 'cli') {
+    echo 'Coupé command should be run on the CLI environment.' . PHP_EOL;
+}
+
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require __DIR__ . '/../vendor/autoload.php';
+} else {
+    require __DIR__ . '/../../../autoload.php';
+}
+
+$app = new Application('Coupé', 'dev-master');
+
+$app->add(new StartCommand());
+
+if (!defined('PHAR_RUNNING')) {
+    $app->add(new PharCommand());
+}
+
+$app->run();

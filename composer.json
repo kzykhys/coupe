@@ -1,0 +1,34 @@
+{
+    "name": "kzykhys/coupe",
+    "description": "Fast HTTP/HTTPS server for PHP developers (PHP5.5+)",
+    "keywords": ["http", "https", "web", "server"],
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kazuyuki Hayashi",
+            "email": "hayashi@valnur.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "psr/log": "~1.0",
+        "kzykhys/coroutine-io": "~1.0",
+        "kzykhys/text": "~1.0",
+        "kzykhys/bowl": "~1.0",
+        "symfony/process": "~2.3",
+        "symfony/console": "~2.3"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/kzykhys/CoroutineIO"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "bin": ["bin/coupe"]
+}
