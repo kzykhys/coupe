@@ -66,6 +66,7 @@ class PhpCgiProcessor implements ProcessorInterface
             'REQUEST_URI'     => $request->getUri(),
             'SERVER_NAME'     => 'localhost',
             'QUERY_STRING'    => $request->getQueryString(),
+            'SCRIPT_NAME'     => $request->getUri(),
             'SCRIPT_FILENAME' => $path->getRealPath(),
             'REQUEST_METHOD'  => $request->getMethod(),
             'REDIRECT_STATUS' => 200,
