@@ -20,6 +20,13 @@
       color:#fff;
       border:none;
     }
+    #docs h2 {
+      font-size:32px;
+      color: #b33641;
+    }
+    #docs h3 {
+      font-size:24px;
+    }
   </style>
   <script>
     (function (i, s, o, g, r, a, m) {
@@ -51,8 +58,8 @@
       </div>
       <div id="nav" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
         <nav>
-          <a href="/projects/" >Projects</a>
-          <a href="/blog/" class="active">Blog</a>
+          <a href="/projects/" class="active">Projects</a>
+          <a href="/blog/">Blog</a>
           <a href="https://github.com/kzykhys" class="icon"><span aria-hidden="true" class="icon-github"></span></a>
           <a href="https://twitter.com/kzykhys" class="icon"><span aria-hidden="true" class="icon-twitter"></span></a>
         </nav>
@@ -60,16 +67,16 @@
     </div>
   </div>
 </header>
-<div class="blog-content content">
-  <div id="blog" class="container main" style="padding-top:50px;padding-bottom:50px;">
+<div class="projects-header content-header">
+  <div class="container main" style="padding-top:30px;padding-bottom:30px;color:#fff;">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <h2 class="text-left" style="font-size:60px;color:#333;">Coupé <small>1.0.0</small></h2>
-        <h3 class="text-left" style="font-size:30px;color:#333;">Fast HTTP/HTTPS server for PHP developers</h3>
+        <h2 class="text-left" style="font-size:60px;">Coupé <small>1.0.0</small></h2>
+        <h3 class="text-left" style="font-size:26px;">Fast HTTP/HTTPS server for PHP developers</h3>
 
-        <p style="margin-top:30px;">
-          <a class="btn btn-primary btn-xlarge" href="coupe.phar">Download coupe.phar</a>
-          <a class="btn btn-primary btn-xlarge" href="https://github.com/kzykhys/Coupe">View project on Github</a>
+        <p style="margin-top:50px;">
+          <a class="btn btn-default btn-lg" href="coupe.phar"><i class="glyphicon glyphicon-download"></i> Download coupe.phar</a>
+          <a class="btn btn-primary btn-lg" href="https://github.com/kzykhys/Coupe"><span aria-hidden="true" class="icon-github"></span> View project on Github</a>
         </p>
       </div>
     </div>
@@ -125,8 +132,30 @@ $ mv coupe.phar /usr/local/bin/coupe
         <h3>Starting with specific ports</h3>
 
         <div class="instruction">
-          <pre>$ php coupe.phar start localhost:80 --with-ssl=localhost:443</pre>
+          <pre>$ sudo php coupe.phar start localhost:80 --with-ssl=localhost:443</pre>
         </div>
+
+        <div class="alert alert-warning">
+          The TCP/IP port numbers below 1024 are special in that normal users are not allowed to run servers on them.
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" style="margin-bottom:20px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <hr/>
+        <p>
+          This project is licensed under MIT license.
+        </p>
+        <p>
+          <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=kzykhys&amp;repo=coupe&amp;type=watch" width="62" height="20" title="Star on GitHub" allowtransparency="true" frameborder="0" scrolling="0" ></iframe>
+          <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=kzykhys&amp;repo=coupe&amp;type=fork" width="62" height="20" title="Fork on GitHub" allowtransparency="true" frameborder="0" scrolling="0" ></iframe>
+        </p>
       </div>
     </div>
   </div>
