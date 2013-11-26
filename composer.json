@@ -19,6 +19,9 @@
         "symfony/process": "~2.3",
         "symfony/console": "~2.3"
     },
+    "require-dev": {
+        "symfony/finder": "~2.3"
+    },
     "repositories": [
         {
             "type": "vcs",
