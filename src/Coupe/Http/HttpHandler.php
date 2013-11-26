@@ -156,9 +156,9 @@ class HttpHandler implements HandlerInterface
                 $response->setHeader('Content-Type', ContentType::getType($file->getExtension()));
             }
         } catch (ResourceNotFoundException $e) {
-            $response = $this->handleError(404);
+            $response = $this->handleError(404, $e);
         } catch (Exception $e) {
-            $response = $this->handleError(500);
+            $response = $this->handleError(500, $e);
         }
 
         $this->logger->log($response->getCode(), (string) $request);
@@ -229,11 +229,12 @@ class HttpHandler implements HandlerInterface
     }
 
     /**
-     * @param $code
+     * @param int        $code
+     * @param \Exception $e
      *
      * @return Response
      */
-    protected function handleError($code)
+    protected function handleError($code, \Exception $e)
     {
         $path = __DIR__ . sprintf('/Resources/html/%d.html', $code);
 
@@ -241,7 +242,7 @@ class HttpHandler implements HandlerInterface
             return new Response(file_get_contents($path), $code);
         }
 
-        return new Response(sprintf('<html><body><h1>Error %d</h1></body></html>', $code), $code);
+        return new Response(sprintf('<html><body><h1>Error %d</h1><p>%s</p></body></html>', $code, $e->getMessage()), $code);
     }
 
 }
