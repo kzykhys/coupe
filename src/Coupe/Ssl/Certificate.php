@@ -16,14 +16,16 @@ class Certificate
      */
     public function create(array $dn, $passPhrase = null)
     {
-        $key = openssl_pkey_new();
-        $crt = openssl_csr_new($dn, $key);
-        $crt = openssl_csr_sign($crt, null, $key, 365);
+        $config = $this->getConfig();
+
+        $key = openssl_pkey_new($config);
+        $crt = openssl_csr_new($dn, $key, $config);
+        $crt = openssl_csr_sign($crt, null, $key, 365, $config);
 
         $x509 = null;
         $pKey = null;
         openssl_x509_export($crt, $x509);
-        openssl_pkey_export($key, $pKey, $passPhrase);
+        openssl_pkey_export($key, $pKey, $passPhrase, $config);
 
         return $x509 . $pKey;
     }
