@@ -25,6 +25,8 @@ Or download [coupe.phar][coupe-phar]
 Usage
 -----
 
+Visit <http://kzykhys.com/coupe> for more information.
+
 ```
 php coupe.phar start
 ```
