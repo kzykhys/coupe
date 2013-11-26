@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Coupe by kzykhys</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Coupe</h1>
+        <p>Fast HTTP/HTTPS server for PHP developers (PHP5.5+)</p>
+
+        <p class="view"><a href="https://github.com/kzykhys/Coupe">View the Project on GitHub <small>kzykhys/Coupe</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/kzykhys/Coupe/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kzykhys/Coupe/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kzykhys/Coupe">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="coup%C3%A9-fast-httphttps-server-for-php-developers" class="anchor" href="#coup%C3%A9-fast-httphttps-server-for-php-developers"><span class="octicon octicon-link"></span></a>Coupé, Fast HTTP/HTTPS server for PHP developers</h1>
+
+<ul>
+<li>Non-blocking IO with coroutine (Generator) available in PHP5.5</li>
+<li>Based on <a href="https://github.com/kzykhys/CoroutineIO">kzykhys/CoroutineIO</a>
+</li>
+<li>Tested against wordpress, drupal(symfony) and Magento(zend framework)</li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>PHP5.5 (both CLI and CGI)</li>
+<li>OpenSSL <a href="http://www.php.net/manual/en/openssl.installation.php">http://www.php.net/manual/en/openssl.installation.php</a>
+</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>curl -s http://kzykhys.com/coupe/install | php
+</code></pre>
+
+<p>Or download <a href="http://kzykhys.com/coupe/coupe.phar">coupe.phar</a></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<pre><code>php coupe.phar start
+</code></pre>
+
+<pre><code>Coupé HTTP Server (dev-master)
+Started at Tue, 26 Nov 2013 12:51:18 +0900
+Listening on http://localhost:8080
+Listening on https://localhost:8443
+Press Ctrl-C to quit
+
+[2013/11/26 12:51:21] 404 GET / HTTP/1.1
+ "(no referrer)" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0"
+[2013/11/26 12:51:34] 200 GET /composer.json HTTP/1.1
+ "(no referrer)" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0"
+</code></pre>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License</p>
+
+<h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p>Kazuyuki Hayashi (<a href="https://github.com/kzykhys" class="user-mention">@kzykhys</a>)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/kzykhys">kzykhys</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
