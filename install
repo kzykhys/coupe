@@ -1,0 +1,62 @@
+<?php
+/**
+ * Coupe installer
+ *
+ * @author Kazuyuki Hayashi <hayashi@valnur.net>
+ */
+
+echo "Checking requirements...\n";
+
+$problems = [];
+$suggestions = [];
+
+if (!version_compare(PHP_VERSION, '5.5.0', '>=')) {
+    $problems[] = "PHP5.5+ is required";
+}
+
+if (count($problems)) {
+    foreach ($problems as $key => $problem) {
+        echo "  Problem#" . ($key + 1) . " " . $problem . "\n";
+    }
+
+    exit(1);
+}
+
+$context = stream_context_create();
+stream_context_set_params($context, [
+    "notification" => "streamNotificationCallback"
+]);
+
+function streamNotificationCallback($code, $severity, $message, $messageCode, $bytesTransferred, $bytesMax)
+{
+    switch ($code) {
+        case STREAM_NOTIFY_FILE_SIZE_IS:
+            $GLOBALS['pharSize'] = $bytesMax;
+            break;
+        case STREAM_NOTIFY_PROGRESS:
+            if ($bytesTransferred > 0) {
+                $progress = (int) $bytesTransferred / $GLOBALS['pharSize'] * 100;
+                printf("\r[%-50s] %d%% (%2d/%2d KB)", str_repeat("=", (int) $progress/2). ">", $progress, ($bytesTransferred/1024), $bytesMax/1024);
+            }
+            break;
+    }
+}
+
+echo "Downloading...\n";
+$phar = file_get_contents('http://kzykhys.com/coupe/coupe.phar', false, $context);
+printf("\r[%-50s] 100%% (%2d/%2d KB)", str_repeat("=", 50). ">", $GLOBALS['pharSize'], $GLOBALS['pharSize']);
+echo "\n\n";
+
+file_put_contents('coupe.phar', $phar);
+@chmod('coupe.phar', 0755);
+
+$file = new \SplFileInfo('coupe.phar');
+printf("Coupe successfully installed to %s\n\n", $file->getRealPath());
+
+echo "Thank you for downloading Coupe.\n";
+echo "If you find any problem, please report an issue on github.\n";
+echo "- https://github.com/kzykhys/coupe/issues\n\n";
+
+echo "To use coupe: php coupe.phar\n";
+
+exit(0);
