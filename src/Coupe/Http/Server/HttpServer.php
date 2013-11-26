@@ -2,8 +2,8 @@
 
 namespace Coupe\Http\Server;
 
-use CoroutineIO\Exception\Exception;
 use CoroutineIO\Server\Server;
+use Coupe\Exception\Exception;
 
 /**
  * @author Kazuyuki Hayashi <hayashi@valnur.net>

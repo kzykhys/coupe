@@ -43,8 +43,6 @@ class ConsoleLogger extends AbstractLogger
             $format = '<fg=red>%s</fg=red> ';
         } elseif ($level >= 500) {
             $format = '<fg=white;bg=red>%s</fg=white;bg=red> ';
-        } else {
-            $format = '%s ';
         }
 
         $this->output->writeln('[' . date('Y/m/d H:i:s') . '] ' . sprintf($format, $level) . trim($message));

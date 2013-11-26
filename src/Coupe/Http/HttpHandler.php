@@ -238,7 +238,7 @@ class HttpHandler implements HandlerInterface
             return new Response(file_get_contents($path), $code);
         }
 
-        return new Response('', $code);
+        return new Response(sprintf('<html><body><h1>Error %d</h1></body></html>', $code), $code);
     }
 
 }

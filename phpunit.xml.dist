@@ -22,6 +22,9 @@
     <filter>
         <whitelist>
             <directory>src</directory>
+            <exclude>
+                <directory>src/Coupe/Console</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
