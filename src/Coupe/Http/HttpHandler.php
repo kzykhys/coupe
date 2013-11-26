@@ -119,7 +119,10 @@ class HttpHandler implements HandlerInterface
         $chunk = str_split($response, 4096);
 
         foreach ($chunk as $buffer) {
-            yield $socket->write($buffer);
+            $bytes = (yield @$socket->write($buffer));
+            if (false === $bytes) {
+                break;
+            }
         }
 
         yield $socket->close();
