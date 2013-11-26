@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Coupe\Console\Command;
 
 use Coupe\Coupe;
