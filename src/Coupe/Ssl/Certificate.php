@@ -45,4 +45,15 @@ class Certificate
         ]);
     }
 
+    protected function getConfig()
+    {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            return [
+                'config' => PHP_BINDIR . '/extras/ssl/openssl.cnf'
+            ];
+        } else {
+            return null;
+        }
+    }
+
 } 
