@@ -5,6 +5,8 @@ Coupé, Fast HTTP/HTTPS server for PHP developers
 * Based on [kzykhys/CoroutineIO][coroutine-io]
 * Tested against wordpress, drupal(symfony) and Magento(zend framework)
 
+![Terminal](http://kzykhys.com/coupe/assets/img/terminal.png?v=2)
+
 Requirements
 ------------
 
@@ -22,6 +24,8 @@ Or download [coupe.phar][coupe-phar]
 
 Usage
 -----
+
+Visit <http://kzykhys.com/coupe> for more information.
 
 ```
 php coupe.phar start

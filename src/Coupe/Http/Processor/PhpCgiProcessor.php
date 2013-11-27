@@ -63,12 +63,14 @@ class PhpCgiProcessor implements ProcessorInterface
     protected function createEnvVars(\SplFileInfo $path, Request $request)
     {
         $env = [
-            'REQUEST_URI'     => $request->getUri(),
+            'REQUEST_URI'     => $request->getUri() . ($request->getQueryString() ? '?' . $request->getQueryString() : ''),
             'SERVER_NAME'     => 'localhost',
             'QUERY_STRING'    => $request->getQueryString(),
+            'SCRIPT_NAME'     => $request->getUri(),
             'SCRIPT_FILENAME' => $path->getRealPath(),
             'REQUEST_METHOD'  => $request->getMethod(),
             'REDIRECT_STATUS' => 200,
+            'SERVER_SOFTWARE' => 'Coupe/PHP 5.5.5 Development Server'
         ];
 
         if ($request->getHeader('Content-Length')) {
