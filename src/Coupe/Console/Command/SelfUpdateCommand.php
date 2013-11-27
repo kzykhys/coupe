@@ -38,7 +38,7 @@ class SelfUpdateCommand extends Command
 
         if (!$input->getOption('force')) {
             if ($current === $latest) {
-                $output->writeln('<info>You are using the latest version</info>');
+                $output->writeln('<info>You are using the latest version [' . $current . ']</info>');
 
                 return 0;
             }
