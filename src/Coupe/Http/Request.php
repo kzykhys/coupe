@@ -279,13 +279,14 @@ class Request
     public function __toString()
     {
         return sprintf(
-            '%s %s %s/%s "%s" "%s"',
+            '%s:%s %s %s %s/%s "%s"',
+            $this->remoteAddr,
+            $this->remotePort,
             $this->method,
             $this->uri,
             $this->protocol,
             $this->protocolVersion,
-            $this->getHeader('Referer', '(no referrer)'),
-            $this->getHeader('User-Agent', '(unknown)')
+            $this->getHeader('Referer', '(no referrer)')
         );
     }
 

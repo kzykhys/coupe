@@ -32,7 +32,7 @@ class RequestParser
                     $request->setQueryString($query);
                     break;
                 case 2:
-                    list($protocol, $version) = explode('/', $value);
+                    list($protocol, $version) = explode('/', trim($value));
                     $request->setProtocol($protocol);
                     $request->setProtocolVersion($version);
                     break;

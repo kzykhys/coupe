@@ -99,8 +99,9 @@ class HttpHandler implements HandlerInterface
 
         $request = $parser->parseHeader($header);
         $address = explode(':', $socket->getRemoteName());
-        $request->setRemoteAddr($address[0]);
-        $request->setRemotePort($address[1]);
+
+        $request->setRemotePort(array_pop($address));
+        $request->setRemoteAddr(implode(':', $address));
 
         if ($request->getMethod() == 'POST') {
             if ($length = $request->getHeader('Content-Length')) {
@@ -169,6 +170,10 @@ class HttpHandler implements HandlerInterface
         }
 
         $this->logger->log($response->getCode(), (string) $request);
+
+        if ($error = $response->getError()) {
+            $this->logger->log(-1, $error);
+        }
 
         return $response;
     }
@@ -248,7 +253,6 @@ class HttpHandler implements HandlerInterface
     protected function joinPath($path = '')
     {
         $args = func_get_args();
-
         $path = str_replace('//', '/', implode('/', $args));
 
         return str_replace('//', '/', $path);
@@ -265,10 +269,12 @@ class HttpHandler implements HandlerInterface
         $path = __DIR__ . sprintf('/Resources/html/%d.html', $code);
 
         if (file_exists($path)) {
-            return new Response(file_get_contents($path), $code);
+            $response = new Response(file_get_contents($path), $code);
+        } else {
+            $response = new Response(sprintf('<html><body><h1>Error %d</h1><p>%s</p></body></html>', $code, $e->getMessage()), $code);
         }
 
-        return new Response(sprintf('<html><body><h1>Error %d</h1><p>%s</p></body></html>', $code, $e->getMessage()), $code);
+        return $response->setError($e->getMessage());
     }
 
 }

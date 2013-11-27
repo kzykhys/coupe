@@ -74,6 +74,11 @@ class Response
     private $body = '';
 
     /**
+     * @var string
+     */
+    private $error = '';
+
+    /**
      * @param string $body
      * @param int    $code
      */
@@ -124,7 +129,28 @@ class Response
     }
 
     /**
+     * @param string $error
      *
+     * @return $this
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+
+    /**
+     * @return string
      */
     public function outputHeader()
     {
@@ -147,7 +173,7 @@ class Response
     }
 
     /**
-     *
+     * @return string
      */
     public function outputBody()
     {

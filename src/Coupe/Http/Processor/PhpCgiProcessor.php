@@ -107,7 +107,8 @@ class PhpCgiProcessor implements ProcessorInterface
     {
         $response = new Response();
         list($header, $body) = explode("\r\n\r\n", $output, 2);
-        $response->setBody($errorOutput . $body);
+        $response->setBody($body);
+        $response->setError($errorOutput);
 
         $header = new Text($header);
         $cookies = [];

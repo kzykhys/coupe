@@ -35,7 +35,11 @@ class ConsoleLogger extends AbstractLogger
      */
     public function log($level, $message, array $context = [])
     {
-        if ($level < 300) {
+        if ($level == -1) {
+            $this->output->writeln(sprintf('<bg=red;fg=white>%s</bg=red;fg=white>', trim($message)));
+
+            return;
+        } elseif ($level < 300) {
             $format = '<fg=white;bg=green>%s</fg=white;bg=green> ';
         } elseif ($level < 400) {
             $format = '%s ';
