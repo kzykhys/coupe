@@ -1,5 +1,5 @@
-Coupé, Fast HTTP/HTTPS server for PHP developers
-================================================
+Coupé, A Handy HTTP/HTTPS Server for PHP Developers
+===================================================
 
 * Non-blocking IO with coroutine (Generator) available in PHP5.5
 * Based on [kzykhys/CoroutineIO][coroutine-io]
