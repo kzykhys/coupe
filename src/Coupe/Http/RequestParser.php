@@ -28,6 +28,7 @@ class RequestParser
                     $path = parse_url($value, PHP_URL_PATH);
                     $query = parse_url($value, PHP_URL_QUERY);
                     $request->setUri($path);
+                    $request->setPath($path);
                     $request->setQueryString($query);
                     break;
                 case 2:

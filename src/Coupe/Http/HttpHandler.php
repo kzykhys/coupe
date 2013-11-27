@@ -49,6 +49,8 @@ class HttpHandler implements HandlerInterface
         ], $options);
 
         $this->logger = new NullLogger();
+
+        $this->env['DOCUMENT_ROOT'] = $this->options['docroot'];
     }
 
     /**
@@ -96,6 +98,9 @@ class HttpHandler implements HandlerInterface
         }
 
         $request = $parser->parseHeader($header);
+        $address = explode(':', $socket->getRemoteName());
+        $request->setRemoteAddr($address[0]);
+        $request->setRemotePort($address[1]);
 
         if ($request->getMethod() == 'POST') {
             if ($length = $request->getHeader('Content-Length')) {
@@ -152,7 +157,7 @@ class HttpHandler implements HandlerInterface
             $file = $this->findFile($request);
 
             if ($processor = $this->findProcessor($file)) {
-                $response = $processor->execute($file, $request);
+                $response = $processor->execute($file, $request, $this->env);
             } else {
                 $response = new Response(file_get_contents($file));
                 $response->setHeader('Content-Type', ContentType::getType($file->getExtension()));
@@ -176,39 +181,44 @@ class HttpHandler implements HandlerInterface
      */
     protected function findFile(Request $request)
     {
-        $path = $this->options['docroot'] . '/' . ltrim($request->getUri(), '/');
+        $path = $this->joinPath($this->options['docroot'], $request->getUri());
         $file = new \SplFileInfo($path);
 
         if ($file->isDir()) {
             // find indexes
             foreach ($this->options['indexes'] as $index) {
-                $fixedPath = rtrim($path, '/') . '/' . $index;
+                $fixedPath = $this->joinPath($path, $index);
                 $fixedFile = new \SplFileInfo($fixedPath);
                 if ($fixedFile->isFile()) {
                     return $fixedFile;
                 }
             }
-
-            // find fallback
-            $path = $this->options['docroot'] . '/' . ltrim($this->options['fallback'], '/');
-            $file = new \SplFileInfo($path);
-
-            if ($file->isFile()) {
-                return $file;
-            }
         }
 
         if ($file->isFile()) {
+            if (substr($path, -1) == '/') {
+                $request->setPathInfo('/');
+            }
+
             return $file;
         }
 
-        if (preg_match('{^([^\.]*?\.[^/]+)(/.*)$}', $request->getUri(), $matches)) {
-            $file = new \SplFileInfo($this->options['docroot'] . '/' . $matches[1]);
+        if (preg_match('{(^[^\.]*?\.[^/]+)(/.*?$)}', $request->getUri(), $matches)) {
+            $file = new \SplFileInfo($this->joinPath($this->options['docroot'], $matches[1]));
             if ($file->isFile()) {
-                $this->env['PATH_INFO'] = $matches[2];
+                $request->setPathInfo($matches[2]);
+                $request->setPath($matches[1]);
 
                 return $file;
             }
+        }
+
+        // find fallback
+        $path = $this->joinPath($this->options['docroot'], $this->options['fallback']);
+        $file = new \SplFileInfo($path);
+
+        if ($file->isFile()) {
+            return $file;
         }
 
         throw new ResourceNotFoundException();
@@ -228,6 +238,20 @@ class HttpHandler implements HandlerInterface
         }
 
         return false;
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return mixed
+     */
+    protected function joinPath($path = '')
+    {
+        $args = func_get_args();
+
+        $path = str_replace('//', '/', implode('/', $args));
+
+        return str_replace('//', '/', $path);
     }
 
     /**

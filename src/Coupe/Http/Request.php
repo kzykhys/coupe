@@ -28,6 +28,16 @@ class Request
     /**
      * @var string
      */
+    private $path = '/';
+
+    /**
+     * @var string
+     */
+    private $pathInfo = null;
+
+    /**
+     * @var string
+     */
     private $protocol = 'HTTP';
 
     /**
@@ -41,9 +51,19 @@ class Request
     private $queryString = '';
 
     /**
-     * @var
+     * @var string
      */
     private $body = '';
+
+    /**
+     * @var string
+     */
+    private $remoteAddr = '127.0.0.1';
+
+    /**
+     * @var int
+     */
+    private $remotePort = 0;
 
     /**
      *
@@ -154,6 +174,46 @@ class Request
     }
 
     /**
+     * @param string $path
+     *
+     * @return $this
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath()
+    {
+        return rtrim($this->path, '/');
+    }
+
+    /**
+     * @param string $pathInfo
+     *
+     * @return $this
+     */
+    public function setPathInfo($pathInfo)
+    {
+        $this->pathInfo = $pathInfo;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPathInfo()
+    {
+        return $this->pathInfo;
+    }
+
+    /**
      * @param string $queryString
      *
      * @return $this
@@ -171,6 +231,46 @@ class Request
     public function getQueryString()
     {
         return $this->queryString;
+    }
+
+    /**
+     * @param string $remoteAddr
+     *
+     * @return $this
+     */
+    public function setRemoteAddr($remoteAddr)
+    {
+        $this->remoteAddr = $remoteAddr;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRemoteAddr()
+    {
+        return $this->remoteAddr;
+    }
+
+    /**
+     * @param int $remotePort
+     *
+     * @return $this
+     */
+    public function setRemotePort($remotePort)
+    {
+        $this->remotePort = $remotePort;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRemotePort()
+    {
+        return $this->remotePort;
     }
 
     /**

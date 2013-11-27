@@ -18,14 +18,14 @@ class PhpCgiProcessor implements ProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function execute(\SplFileInfo $path, Request $request)
+    public function execute(\SplFileInfo $path, Request $request, array $env = [])
     {
         $bin = dirname(PHP_BINARY) . '/php-cgi';
 
         $process = new Process(
             $bin . ' -f ' . $path->getRealPath(),
             null,
-            $this->createEnvVars($path, $request),
+            $this->createEnvVars($path, $request, $env),
             $request->getBody()
         );
         $process->run();
@@ -57,21 +57,28 @@ class PhpCgiProcessor implements ProcessorInterface
     /**
      * @param \SplFileInfo $path
      * @param Request      $request
+     * @param array        $env
      *
      * @return array
      */
-    protected function createEnvVars(\SplFileInfo $path, Request $request)
+    protected function createEnvVars(\SplFileInfo $path, Request $request, array $env = [])
     {
-        $env = [
+        $env = array_merge($env, [
             'REQUEST_URI'     => $request->getUri() . ($request->getQueryString() ? '?' . $request->getQueryString() : ''),
             'SERVER_NAME'     => 'localhost',
             'QUERY_STRING'    => $request->getQueryString(),
-            'SCRIPT_NAME'     => $request->getUri(),
+            'SCRIPT_NAME'     => $request->getPath(),
             'SCRIPT_FILENAME' => $path->getRealPath(),
             'REQUEST_METHOD'  => $request->getMethod(),
             'REDIRECT_STATUS' => 200,
-            'SERVER_SOFTWARE' => 'Coupe/PHP ' . PHP_VERSION . ' Development Server'
-        ];
+            'SERVER_SOFTWARE' => 'Coupe/PHP ' . PHP_VERSION . ' Development Server',
+            'REMOTE_ADDR'     => $request->getRemoteAddr(),
+            'REMOTE_PORT'     => $request->getRemotePort()
+        ]);
+
+        if ($request->getPathInfo()) {
+            $env['PATH_INFO'] = $request->getPathInfo();
+        }
 
         if ($request->getHeader('Content-Length')) {
             $env['CONTENT_LENGTH'] = $request->getHeader('Content-Length');
