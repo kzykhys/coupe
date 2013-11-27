@@ -16,11 +16,21 @@ Requirements
 Installation
 ------------
 
+### On Unix
+
 ```
 curl -s http://kzykhys.com/coupe/install | php
 ```
 
-Or download [coupe.phar][coupe-phar]
+### On Windows
+
+Download [coupe.phar][coupe-phar]
+
+### Update
+
+```
+php coupe.phar self-update
+```
 
 Usage
 -----
