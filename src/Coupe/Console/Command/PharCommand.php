@@ -61,7 +61,7 @@ class PharCommand extends Command
             ->in('.')
             ->files()
             ->name('*.php')
-            ->exclude(['test', 'build', 'bin'])
+            ->exclude(['test', 'build', 'bin', 'vendor/symfony/finder'])
             ->ignoreVCS(true);
 
         $count = iterator_count($finder);
