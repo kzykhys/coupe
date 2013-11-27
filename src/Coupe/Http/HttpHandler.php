@@ -116,13 +116,15 @@ class HttpHandler implements HandlerInterface
         // Fixme: Connection=keep-alive is not supported at this time
         $response->setHeader('Connection', 'close');
 
-        $chunk = str_split($response, 4096);
+        $length = strlen($response);
+        $bytesTransferred = 0;
 
-        foreach ($chunk as $buffer) {
-            $bytes = (yield @$socket->write($buffer));
-            if (false === $bytes) {
+        while ($bytesTransferred < $length) {
+            $bytes = (yield @$socket->write(substr($response, $bytesTransferred, 4096)));
+            if (false == $bytes) {
                 break;
             }
+            $bytesTransferred += $bytes;
         }
 
         yield $socket->close();
