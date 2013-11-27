@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
 
 /**
  * @author Kazuyuki Hayashi <hayashi@valnur.net>
@@ -51,6 +52,11 @@ class PharCommand extends Command
             @unlink($path);
         }
 
+        $output->write('Finding recent version... ');
+
+        $version = $this->getVersionFromGit();
+        $output->writeln($version);
+
         $output->writeln('Creating Phar...');
 
         $phar = new \Phar($path, 0, $this->fileName);
@@ -80,6 +86,7 @@ class PharCommand extends Command
 
         $script = file_get_contents('bin/coupe');
         $script = preg_replace('/^.*?(<\?php.*)/ms', '\1', $script);
+        $script = str_replace('@dev-master', $version, $script);
         $phar->addFromString('bin/coupe', $script);
 
         $phar->setStub($this->getStub());
@@ -91,6 +98,31 @@ class PharCommand extends Command
         $output->writeln('Build Complete: see ' . $path);
 
         return 0;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getVersionFromGit()
+    {
+        $process = new Process('git describe --tags HEAD');
+        $process->run();
+
+        if ($process->isSuccessful()) {
+            return $process->getOutput();
+        }
+
+        $process = new Process('git log -1 --pretty="%H" HEAD');
+        $process->run();
+
+        if ($process->isSuccessful()) {
+            $version = $process->getOutput();
+            $version = substr($version, 0, 8);
+
+            return 'dev-master(' . $version . ')';
+        }
+
+        return 'dev-master';
     }
 
     /**
