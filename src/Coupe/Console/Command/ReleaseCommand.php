@@ -70,7 +70,7 @@ class ReleaseCommand extends Command
         file_put_contents('version', $version);
 
         $output->writeln('Staging...');
-        $process = new Process('git add coupe.phar version');
+        $process = new Process('git add coupe.phar version install');
         $process->run();
 
         $process = new Process('git status');
