@@ -19,7 +19,7 @@ trait VersionTrait
         $process->run();
 
         if ($process->isSuccessful()) {
-            return $process->getOutput();
+            return trim($process->getOutput());
         }
 
         $process = new Process('git log -1 --pretty="%H" HEAD');
