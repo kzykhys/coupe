@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.5.0",
         "psr/log": "~1.0",
-        "kzykhys/coroutine-io": "~1.0",
+        "kzykhys/coroutine-io": "~0.1",
         "kzykhys/text": "~1.0",
         "kzykhys/bowl": "~1.0",
         "symfony/process": "~2.3",
@@ -23,16 +23,15 @@
         "symfony/finder": "~2.3",
         "symfony/filesystem": "~2.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/kzykhys/CoroutineIO"
-        }
-    ],
     "autoload": {
         "psr-0": {
             "": "src/"
         }
     },
-    "bin": ["bin/coupe"]
+    "bin": ["bin/coupe"],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
 }

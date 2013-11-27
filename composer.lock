@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5cf97a35c6f1fcec67f40b7fbdcc03ad",
+    "hash": "6c4dc26b4126b30a98dfc20b603f0eef",
     "packages": [
         {
             "name": "kzykhys/bowl",
@@ -50,16 +50,16 @@
         },
         {
             "name": "kzykhys/coroutine-io",
-            "version": "v1.0.2",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:kzykhys/CoroutineIO.git",
-                "reference": "8c1e95224820cefa30dbb11a123eaea4208b3815"
+                "url": "https://github.com/kzykhys/CoroutineIO.git",
+                "reference": "48c0c7508f045e0a8a5ec4d27d82563ed187a151"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kzykhys/CoroutineIO/zipball/8c1e95224820cefa30dbb11a123eaea4208b3815",
-                "reference": "8c1e95224820cefa30dbb11a123eaea4208b3815",
+                "url": "https://api.github.com/repos/kzykhys/CoroutineIO/zipball/48c0c7508f045e0a8a5ec4d27d82563ed187a151",
+                "reference": "48c0c7508f045e0a8a5ec4d27d82563ed187a151",
                 "shasum": ""
             },
             "require": {
@@ -71,6 +71,7 @@
                     "": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -82,18 +83,14 @@
             ],
             "description": "Fast socket server implementation using *Generator*",
             "keywords": [
+                "Socket",
                 "coroutine",
                 "multitasking",
                 "server",
-                "socket",
                 "tcp",
                 "udp"
             ],
-            "support": {
-                "source": "https://github.com/kzykhys/CoroutineIO/tree/v1.0.2",
-                "issues": "https://github.com/kzykhys/CoroutineIO/issues"
-            },
-            "time": "2013-11-27 00:51:01"
+            "time": "2013-11-27 10:26:36"
         },
         {
             "name": "kzykhys/text",
