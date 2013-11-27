@@ -66,6 +66,7 @@ class ReleaseCommand extends Command
         }
 
         $fs->copy('../coupe.phar', 'coupe.phar', true);
+        $fs->copy('../../bin/install', 'install', true);
         file_put_contents('version', $version);
 
         $output->writeln('Staging...');
