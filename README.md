@@ -1,9 +1,9 @@
-Coupé, A Handy HTTP/HTTPS Server for PHP Developers
-===================================================
+Coupé, A Handy HTTP/HTTPS Server written in *PURE* PHP
+======================================================
 
 * Non-blocking IO with coroutine (Generator) available in PHP5.5
 * Based on [kzykhys/CoroutineIO][coroutine-io]
-* Tested against Wordpress, Drupal(symfony) and Magento(zend framework)
+* Tested against Wordpress, Symfony2
 
 ![Terminal](http://kzykhys.com/coupe/assets/img/terminal.png?v=2)
 
@@ -11,7 +11,7 @@ Requirements
 ------------
 
 * PHP5.5 (both CLI and CGI)
-* OpenSSL http://www.php.net/manual/en/openssl.installation.php
+* (optional) OpenSSL http://www.php.net/manual/en/openssl.installation.php
 
 Installation
 ------------

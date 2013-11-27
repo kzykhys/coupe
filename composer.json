@@ -1,6 +1,6 @@
 {
     "name": "kzykhys/coupe",
-    "description": "A Handy HTTP/HTTPS Server for PHP Developers (PHP5.5+)",
+    "description": "A Handy HTTP/HTTPS Server for written in *PURE* PHP (5.5+)",
     "keywords": ["http", "https", "web", "server"],
     "minimum-stability": "stable",
     "license": "MIT",
