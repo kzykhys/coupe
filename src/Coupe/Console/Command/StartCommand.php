@@ -50,6 +50,7 @@ class StartCommand extends Command
 
         $output->writeln('<bg=cyan;fg=black>Coupé HTTP Server (dev-master)</bg=cyan;fg=black>');
         $output->writeln('Started at ' . date('r'));
+        $output->writeln('Document root is ' . getcwd());
         $output->writeln('Listening on http://' . $input->getArgument('address'));
 
         if (!$input->getOption('without-ssl')) {
