@@ -70,7 +70,7 @@ class PhpCgiProcessor implements ProcessorInterface
             'SCRIPT_FILENAME' => $path->getRealPath(),
             'REQUEST_METHOD'  => $request->getMethod(),
             'REDIRECT_STATUS' => 200,
-            'SERVER_SOFTWARE' => 'Coupe/PHP 5.5.5 Development Server'
+            'SERVER_SOFTWARE' => 'Coupe/PHP ' . PHP_VERSION . ' Development Server'
         ];
 
         if ($request->getHeader('Content-Length')) {
