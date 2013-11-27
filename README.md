@@ -28,20 +28,28 @@ Usage
 Visit <http://kzykhys.com/coupe> for more information.
 
 ```
-php coupe.phar start
+php coupe.phar help start
 ```
 
 ```
-Coupé HTTP Server (dev-master)
-Started at Tue, 26 Nov 2013 12:51:18 +0900
-Listening on http://localhost:8080
-Listening on https://localhost:8443
-Press Ctrl-C to quit
+Usage:
+ start [-t|--docroot="..."] [-s|--with-ssl[="..."]] [--without-ssl] [--fallback="..."] [address]
 
-[2013/11/26 12:51:21] 404 GET / HTTP/1.1
- "(no referrer)" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0"
-[2013/11/26 12:51:34] 200 GET /composer.json HTTP/1.1
- "(no referrer)" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0"
+Arguments:
+ address               <host>:<port> (default: "localhost:8080")
+
+Options:
+ --docroot (-t)        Specify document root
+ --with-ssl (-s)       <host>:<port> (default: "localhost:8443")
+ --without-ssl         Disables ssl transport
+ --fallback            Fallback script (default: false)
+ --help (-h)           Display this help message.
+ --quiet (-q)          Do not output any message.
+ --verbose (-v|vv|vvv) Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+ --version (-V)        Display this application version.
+ --ansi                Force ANSI output.
+ --no-ansi             Disable ANSI output.
+ --no-interaction (-n) Do not ask any interactive question.
 ```
 
 License
