@@ -1,0 +1,147 @@
+<?php
+/**
+ * Coupe installer
+ *
+ * @author Kazuyuki Hayashi <hayashi@valnur.net>
+ */
+
+/*
+ * Variables
+ */
+
+$problems    = array();
+$suggestions = array();
+
+/*
+ * Functions
+ */
+
+function ansi($message)
+{
+    $tags = array(
+        'fg:green' => array("\033[0;32m", "\033[0m"),
+        'fg:cyan'  => array("\033[0;36m", "\033[0m"),
+        'fg:red'  => array("\033[0;31m", "\033[0m"),
+        'fg:yellow'  => array("\033[0;33m", "\033[0m"),
+        'fg:white' => array("\033[0;37m", "\033[0m"),
+        'bg:red' => array("\033[0;41m", "\033[0m")
+    );
+
+    foreach ($tags as $key => $value) {
+        $startTag = '<' . $key . '>';
+        $endTag   = '</' . $key . '>';
+
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            $message = str_replace(array($startTag, $endTag), array('', ''), $message);
+        } else {
+            $message = str_replace(array($startTag, $endTag), array($value[0], $value[1]), $message);
+        }
+    }
+
+    return $message;
+}
+
+function streamNotificationCallback($code, $s, $m, $mc, $bytesTransferred, $bytesMax)
+{
+    switch ($code) {
+        case STREAM_NOTIFY_FILE_SIZE_IS:
+            $GLOBALS['pharSize'] = $bytesMax;
+            break;
+        case STREAM_NOTIFY_PROGRESS:
+            if ($bytesTransferred > 0) {
+                $progress = (int) $bytesTransferred / $GLOBALS['pharSize'] * 100;
+                printf("\r[%-50s] %d%% (%2d/%2d KB)", str_repeat("=", (int) $progress/2). ">", $progress, ($bytesTransferred/1024), $bytesMax/1024);
+            }
+            break;
+    }
+}
+
+
+/*
+ * Check requirements
+ */
+
+echo ansi("<fg:yellow>Checking requirements...\n</fg:yellow>");
+
+// PHP version
+if (!version_compare(PHP_VERSION, '5.5.0', '>=')) {
+    $problems[] = "PHP5.5+ is required. Please upgrade your PHP to the latest version.";
+}
+
+// PHP CGI
+if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+    $cgi = dirname(PHP_BINARY) . '\\php-cgi.exe';
+} else {
+    $cgi = dirname(PHP_BINARY) . '/php-cgi';
+}
+if (!file_exists($cgi)) {
+    $problems[] = "PHP-CGI is required. Please upgrade your PHP to the latest version.";
+}
+
+// Error
+if ($count = count($problems)) {
+    echo ansi("\n<fg:red>" . $count . " problem" . ($count > 1 ? 's' : '') . " found:\n</fg:red>");
+
+    foreach ($problems as $key => $problem) {
+        echo "* " . $problem . "\n";
+    }
+
+    echo ansi("\n<fg:red>Installation failed</fg:red>\n");
+    exit(1);
+}
+
+/*
+ * Suggestions
+ */
+
+// OpenSSL
+if (!extension_loaded('openssl')) {
+    $suggestions[] = 'openssl is required to enable https transport';
+}
+
+// Suggest
+if ($count = count($suggestions)) {
+    echo ansi("\n<fg:yellow>" . $count . " suggestion" . ($count > 1 ? 's' : '') . ":\n</fg:yellow>");
+
+    foreach ($suggestions as $key => $suggestion) {
+        echo "* " . $suggestion . "\n";
+    }
+
+    echo "\n";
+}
+
+/*
+ * Downloading
+ */
+
+echo ansi("<fg:yellow>Downloading...\n</fg:yellow>");
+
+$context = stream_context_create();
+stream_context_set_params($context, array(
+    "notification" => "streamNotificationCallback"
+));
+
+$phar = file_get_contents('http://kzykhys.com/coupe/coupe.phar', false, $context);
+printf("\r[%-50s] 100%% (%2d/%2d KB)", str_repeat("=", 50). ">", $GLOBALS['pharSize'], $GLOBALS['pharSize']);
+echo "\n\n";
+
+file_put_contents('coupe.phar', $phar);
+@chmod('coupe.phar', 0755);
+
+$file = new \SplFileInfo('coupe.phar');
+printf(ansi("<fg:green>Coupe successfully installed to %s</fg:green>\n\n"), $file->getRealPath());
+
+/*
+ * Thank you
+ */
+
+echo ansi(
+    "<fg:cyan>".
+    "Thank you for downloading Coupe.\n".
+    "If you find any problem, please report an issue on github.\n".
+    "<https://github.com/kzykhys/coupe/issues>\n\n".
+    "To use coupe: php coupe.phar\n".
+    "</fg:cyan>"
+);
+
+exit(0);
