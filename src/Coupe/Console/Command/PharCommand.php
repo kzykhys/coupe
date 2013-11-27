@@ -2,19 +2,21 @@
 
 namespace Coupe\Console\Command;
 
+use Coupe\Console\Command\Traits\VersionTrait;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Process\Process;
 
 /**
  * @author Kazuyuki Hayashi <hayashi@valnur.net>
  */
 class PharCommand extends Command
 {
+
+    use VersionTrait;
 
     private $fileName = 'coupe.phar';
 
@@ -98,31 +100,6 @@ class PharCommand extends Command
         $output->writeln('Build Complete: see ' . $path);
 
         return 0;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getVersionFromGit()
-    {
-        $process = new Process('git describe --tags HEAD');
-        $process->run();
-
-        if ($process->isSuccessful()) {
-            return $process->getOutput();
-        }
-
-        $process = new Process('git log -1 --pretty="%H" HEAD');
-        $process->run();
-
-        if ($process->isSuccessful()) {
-            $version = $process->getOutput();
-            $version = substr($version, 0, 8);
-
-            return 'dev-master(' . $version . ')';
-        }
-
-        return 'dev-master';
     }
 
     /**
