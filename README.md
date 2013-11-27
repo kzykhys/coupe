@@ -3,7 +3,7 @@ Coupé, A Handy HTTP/HTTPS Server for PHP Developers
 
 * Non-blocking IO with coroutine (Generator) available in PHP5.5
 * Based on [kzykhys/CoroutineIO][coroutine-io]
-* Tested against wordpress, drupal(symfony) and Magento(zend framework)
+* Tested against Wordpress, Drupal(symfony) and Magento(zend framework)
 
 ![Terminal](http://kzykhys.com/coupe/assets/img/terminal.png?v=2)
 
