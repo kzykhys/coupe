@@ -71,11 +71,11 @@
   <div class="container main" style="padding-top:30px;padding-bottom:30px;color:#fff;">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <h2 class="text-left" style="font-size:60px;">Coupé <small>1.0.0</small></h2>
-        <h3 class="text-left" style="font-size:26px;">A Handy HTTP/HTTPS Server written in <em>PURE</em> PHP<br>Non-blocking IO with coroutine available in PHP5.5</h3>
+        <h2 class="text-left" style="font-size:60px;">Coupé <small style="font-size:30px;text-transform:lowercase;">v1.0.0</small></h2>
+        <h3 class="text-left" style="font-size:24px;">A Handy HTTP/HTTPS Server written in <strong style="color:#ffd668;">pure</strong> PHP<br>Non-blocking IO with coroutine available in PHP5.5</h3>
 
         <p style="margin-top:50px;">
-          <a class="btn btn-default btn-lg" href="coupe.phar">Download coupe.phar</a>
+          <a class="btn btn-warning btn-lg" href="coupe.phar">Download coupe.phar</a>
           <a class="btn btn-primary btn-lg" href="https://github.com/kzykhys/Coupe"><span aria-hidden="true" class="icon-github"></span> View project on Github</a>
         </p>
       </div>
@@ -87,15 +87,23 @@
   <div id="docs" class="container main">
     <div class="row">
       <div class="col-lg-12 col-md-12">
+        <div class="alert alert-danger">
+          Coupé was designed to aid application development. Don't use this server on a public network.
+        </div>
+
         <h2 class="text-left">Installation</h2>
 
-        <h3>Locally</h3>
+        <h3>Locally (UNIX)</h3>
+
+        <p>This command checks your PHP environment and then download coupe.phar to current working directory.</p>
 
         <div class="instruction">
           <pre>$ curl -s http://kzykhys.com/coupe/install | php</pre>
         </div>
 
-        <h3>Globally</h3>
+        <h3>Globally (UNIX)</h3>
+
+        <p>Put coupe.phar in your <code>PATH</code>.</p>
 
         <div class="instruction">
           <pre>$ curl -s http://kzykhys.com/coupe/install | php
@@ -106,6 +114,12 @@ $ mv coupe.phar /usr/local/bin/coupe
             Debien/Ubuntu users will have to run the <code>mv</code> with <code>sudo</code>
           </div>
         </div>
+
+        <h3>Windows</h3>
+
+        <p>Download coupe.phar and store anywhere on your computer.</p>
+
+        <p><a class="btn btn-success" href="coupe.phar">Download coupe.phar</a></p>
 
         <h2 class="text-left">Update Coupé</h2>
 
@@ -129,10 +143,10 @@ $ mv coupe.phar /usr/local/bin/coupe
           <pre>$ php coupe.phar start -t public</pre>
         </div>
 
-        <h3>Emulate <em>RewriteEngine On</em></h3>
+        <h3>Emulate <code>RewriteEngine On</code></h3>
 
         <div class="instruction">
-          <pre>$ php coupe.phar start --fallback=index.php</pre>
+          <pre>$ php coupe.phar start --fallback=app_dev.php</pre>
         </div>
 
         <h3>Disable SSL</h3>
@@ -159,8 +173,7 @@ $ mv coupe.phar /usr/local/bin/coupe
 <div class="content" style="margin-bottom:20px;">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <hr/>
+      <div class="col-lg-12 col-md-12 text-center">
         <p>
           This project is licensed under MIT license.
         </p>
