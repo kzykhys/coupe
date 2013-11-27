@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
+/**
+ * @author Kazuyuki Hayashi <hayashi@valnur.net>
+ */
 class ReleaseCommand extends Command
 {
 

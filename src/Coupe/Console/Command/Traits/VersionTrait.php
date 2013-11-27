@@ -4,6 +4,9 @@ namespace Coupe\Console\Command\Traits;
 
 use Symfony\Component\Process\Process;
 
+/**
+ * @author Kazuyuki Hayashi <hayashi@valnur.net>
+ */
 trait VersionTrait
 {
 

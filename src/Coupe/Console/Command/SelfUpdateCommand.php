@@ -8,6 +8,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
+/**
+ * @author Kazuyuki Hayashi <hayashi@valnur.net>
+ */
 class SelfUpdateCommand extends Command
 {
 

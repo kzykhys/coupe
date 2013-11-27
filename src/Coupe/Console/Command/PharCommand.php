@@ -18,6 +18,9 @@ class PharCommand extends Command
 
     use VersionTrait;
 
+    /**
+     * @var string
+     */
     private $fileName = 'coupe.phar';
 
     /**
