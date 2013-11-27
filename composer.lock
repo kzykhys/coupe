@@ -50,16 +50,16 @@
         },
         {
             "name": "kzykhys/coroutine-io",
-            "version": "v1.0.0",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:kzykhys/CoroutineIO.git",
-                "reference": "45dc60bddc0fc0aae45180f3c2b26ae7f6955dcc"
+                "reference": "8c1e95224820cefa30dbb11a123eaea4208b3815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kzykhys/CoroutineIO/zipball/45dc60bddc0fc0aae45180f3c2b26ae7f6955dcc",
-                "reference": "45dc60bddc0fc0aae45180f3c2b26ae7f6955dcc",
+                "url": "https://api.github.com/repos/kzykhys/CoroutineIO/zipball/8c1e95224820cefa30dbb11a123eaea4208b3815",
+                "reference": "8c1e95224820cefa30dbb11a123eaea4208b3815",
                 "shasum": ""
             },
             "require": {
@@ -90,10 +90,10 @@
                 "udp"
             ],
             "support": {
-                "source": "https://github.com/kzykhys/CoroutineIO/tree/master",
+                "source": "https://github.com/kzykhys/CoroutineIO/tree/v1.0.2",
                 "issues": "https://github.com/kzykhys/CoroutineIO/issues"
             },
-            "time": "2013-11-26 02:36:52"
+            "time": "2013-11-27 00:51:01"
         },
         {
             "name": "kzykhys/text",
