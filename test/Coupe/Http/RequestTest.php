@@ -25,7 +25,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($request->getHeader('baz'));
         $this->assertTrue($request->getHeader('baz', true));
         $this->assertEquals(['foo' => 'bar'], $request->getHeaders());
-        $this->assertEquals('GET /foo/bar HTTP/1.1 "(no referrer)" "(unknown)"', (string) $request);
+        $this->assertEquals('127.0.0.1:0 GET /foo/bar HTTP/1.1 "(no referrer)"', (string) $request);
     }
 
 } 
