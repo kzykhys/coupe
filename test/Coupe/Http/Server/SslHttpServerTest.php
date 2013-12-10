@@ -28,32 +28,6 @@ class SslHttpServerTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @expectedException Coupe\Exception\Exception
-     */
-    public function testCreateSocketFails()
-    {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
-            throw new Coupe\Exception\Exception();
-        }
-
-        $path = $this->getCachePath('localhost:8443');
-
-        try {
-            $server = new SslHttpServer(new SslHttpHandler());
-            $socket = $server->createSocket('localhost:8443');
-
-            $server2 = new SslHttpServer(new SslHttpHandler());
-            $server2->createSocket('localhost:8443');
-        } catch (\Exception $e) {
-            throw $e;
-        } finally {
-            fclose($socket);
-            if (file_exists($path)) {
-                unlink($path);
-            }
-        }
-    }
 
     protected function getCachePath($address)
     {
