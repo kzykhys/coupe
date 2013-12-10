@@ -58,6 +58,16 @@ class Request
     /**
      * @var string
      */
+    private $serverName = 'localhost';
+
+    /**
+     * @var int
+     */
+    private $serverPort = 8080;
+    
+    /**
+     * @var string
+     */
     private $remoteAddr = '127.0.0.1';
 
     /**
@@ -76,7 +86,7 @@ class Request
     /**
      * @param mixed $body
      *
-     * @return $this
+     * @return Request
      */
     public function setBody($body)
     {
@@ -96,7 +106,7 @@ class Request
     /**
      * @param string $method
      *
-     * @return $this
+     * @return Request
      */
     public function setMethod($method)
     {
@@ -116,7 +126,7 @@ class Request
     /**
      * @param string $protocol
      *
-     * @return $this
+     * @return Request
      */
     public function setProtocol($protocol)
     {
@@ -136,7 +146,7 @@ class Request
     /**
      * @param string $protocolVersion
      *
-     * @return $this
+     * @return Request
      */
     public function setProtocolVersion($protocolVersion)
     {
@@ -156,7 +166,7 @@ class Request
     /**
      * @param string $uri
      *
-     * @return $this
+     * @return Request
      */
     public function setUri($uri)
     {
@@ -176,7 +186,7 @@ class Request
     /**
      * @param string $path
      *
-     * @return $this
+     * @return Request
      */
     public function setPath($path)
     {
@@ -196,7 +206,7 @@ class Request
     /**
      * @param string $pathInfo
      *
-     * @return $this
+     * @return Request
      */
     public function setPathInfo($pathInfo)
     {
@@ -216,7 +226,7 @@ class Request
     /**
      * @param string $queryString
      *
-     * @return $this
+     * @return Request
      */
     public function setQueryString($queryString)
     {
@@ -234,9 +244,51 @@ class Request
     }
 
     /**
+     * @param string $serverName
+     *
+     * @return Request
+     */
+    public function setServerName($serverName)
+    {
+        $this->serverName = $serverName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServerName()
+    {
+        return $this->serverName;
+    }
+
+    /**
+     * @param int $serverPort
+     *
+     * @return Request
+     */
+    public function setServerPort($serverPort)
+    {
+        $this->serverPort = $serverPort;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getServerPort()
+    {
+        return $this->serverPort;
+    }
+
+    
+    
+    /**
      * @param string $remoteAddr
      *
-     * @return $this
+     * @return Request
      */
     public function setRemoteAddr($remoteAddr)
     {
@@ -256,7 +308,7 @@ class Request
     /**
      * @param int $remotePort
      *
-     * @return $this
+     * @return Request
      */
     public function setRemotePort($remotePort)
     {

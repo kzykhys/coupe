@@ -98,10 +98,14 @@ class HttpHandler implements HandlerInterface
         }
 
         $request = $parser->parseHeader($header);
-        $address = explode(':', $socket->getRemoteName());
 
-        $request->setRemotePort(array_pop($address));
-        $request->setRemoteAddr(implode(':', $address));
+        $serverAddress = explode(':', $socket->getLocalName());
+        $request->setServerPort(array_pop($serverName));
+        $request->setServerName(implode('', $serverAddress));
+
+        $remoteAddress = explode(':', $socket->getRemoteName());
+        $request->setRemotePort(array_pop($remoteAddress));
+        $request->setRemoteAddr(implode('', $remoteAddress));
 
         if ($request->getMethod() == 'POST') {
             if ($length = $request->getHeader('Content-Length')) {

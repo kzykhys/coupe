@@ -66,6 +66,7 @@ class PhpCgiProcessor implements ProcessorInterface
         $env = array_merge($env, [
             'REQUEST_URI'     => $request->getUri() . ($request->getQueryString() ? '?' . $request->getQueryString() : ''),
             'SERVER_NAME'     => 'localhost',
+            'SERVER_PORT'     => $request->getServerPort(),
             'QUERY_STRING'    => $request->getQueryString(),
             'SCRIPT_NAME'     => $request->getPath(),
             'SCRIPT_FILENAME' => $path->getRealPath(),
