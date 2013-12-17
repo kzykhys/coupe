@@ -80,7 +80,7 @@ class ReleaseCommand extends Command
         /* @var \Symfony\Component\Console\Helper\DialogHelper $dialog */
         $dialog = $this->getHelper('dialog');
 
-        if ($result = $dialog->askConfirmation($output, 'Do you release ' . $version . '? [yes/no]: ', false)) {
+        if ($dialog->askConfirmation($output, 'Do you release ' . $version . '? [yes/no]: ', false)) {
             $process = new Process('git commit -m "Releases coupe ' . $version . '"');
             $process->run();
             $output->writeln($process->getOutput());
