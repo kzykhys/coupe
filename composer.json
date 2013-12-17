@@ -1,7 +1,7 @@
 {
     "name": "kzykhys/coupe",
     "description": "A Handy HTTP/HTTPS Server for written in *PURE* PHP (5.5+)",
-    "keywords": ["http", "https", "web", "server"],
+    "keywords": ["http", "https", "web", "server", "development"],
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
@@ -14,14 +14,14 @@
         "php": ">=5.5.0",
         "psr/log": "~1.0",
         "kzykhys/coroutine-io": "~0.1",
-        "kzykhys/text": "~1.0",
-        "kzykhys/bowl": "~1.0",
-        "symfony/process": "~2.3",
-        "symfony/console": "~2.3"
+        "kzykhys/text": ">=1.0",
+        "kzykhys/bowl": ">=1.0",
+        "symfony/process": ">=2.3",
+        "symfony/console": ">=2.3"
     },
     "require-dev": {
-        "symfony/finder": "~2.3",
-        "symfony/filesystem": "~2.3"
+        "symfony/finder": ">=2.3",
+        "symfony/filesystem": ">=2.3"
     },
     "autoload": {
         "psr-0": {
