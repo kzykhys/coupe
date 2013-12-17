@@ -49,5 +49,4 @@ class RequestParser
         return $request;
     }
 
-
 } 

@@ -23,9 +23,9 @@ class StartCommand extends Command
         $this
             ->setName('start')
             ->setDescription('Start the server')
-            ->addArgument('address', InputArgument::OPTIONAL, '<host>:<port>', 'localhost:8080')
+            ->addArgument('address', InputArgument::OPTIONAL, '<host>:<port>', '127.0.0.1:8080')
             ->addOption('docroot', 't', InputOption::VALUE_REQUIRED, 'Specify document root')
-            ->addOption('with-ssl', 's', InputOption::VALUE_OPTIONAL, '<host>:<port>', 'localhost:8443')
+            ->addOption('with-ssl', 's', InputOption::VALUE_OPTIONAL, '<host>:<port>', '127.0.0.1:8443')
             ->addOption('without-ssl', null, InputOption::VALUE_NONE, 'Disables ssl transport')
             ->addOption('fallback', null, InputOption::VALUE_REQUIRED, 'Fallback script', false)
         ;
