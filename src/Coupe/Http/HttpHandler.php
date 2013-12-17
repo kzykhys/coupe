@@ -123,7 +123,7 @@ class HttpHandler implements HandlerInterface
 
         $response = $this->handleRequest($request, new ProtectedStreamSocket($socket));
 
-        // Fixme: Connection=keep-alive is not supported at this time
+        // Connection=keep-alive is not supported at this time
         $response->setHeader('Connection', 'close');
 
         $length = strlen($response);
