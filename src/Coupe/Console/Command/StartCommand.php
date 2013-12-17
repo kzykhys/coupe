@@ -48,7 +48,7 @@ class StartCommand extends Command
             'address.http' => $input->getArgument('address')
         ]);
 
-        $output->writeln('<bg=cyan;fg=black>Coupé HTTP Server (dev-master)</bg=cyan;fg=black>');
+        $output->writeln(sprintf('<bg=cyan;fg=black>Coupé HTTP Server (%s)</bg=cyan;fg=black>', $this->getApplication()->getVersion()));
         $output->writeln('Started at ' . date('r'));
         $output->writeln('Document root is ' . getcwd());
         $output->writeln('Listening on http://' . $input->getArgument('address'));
