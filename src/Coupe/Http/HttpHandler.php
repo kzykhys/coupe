@@ -100,7 +100,7 @@ class HttpHandler implements HandlerInterface
         $request = $parser->parseHeader($header);
 
         $serverAddress = explode(':', $socket->getLocalName());
-        $request->setServerPort(array_pop($serverName));
+        $request->setServerPort(array_pop($serverAddress));
         $request->setServerName(implode('', $serverAddress));
 
         $remoteAddress = explode(':', $socket->getRemoteName());
