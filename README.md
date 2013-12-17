@@ -3,6 +3,7 @@ Coupé, A Handy HTTP/HTTPS Server written in *PURE* PHP
 
 [![Latest Unstable Version](https://poser.pugx.org/kzykhys/coupe/v/unstable.png)](https://packagist.org/packages/kzykhys/coupe)
 [![Build Status](https://travis-ci.org/kzykhys/coupe.png?branch=master)](https://travis-ci.org/kzykhys/coupe)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/25731f48-72cc-4e7c-9100-19267dd91b1b/mini.png)](https://insight.sensiolabs.com/projects/25731f48-72cc-4e7c-9100-19267dd91b1b)
 
 * Non-blocking IO with coroutine (Generator) available in PHP5.5
 * Based on [kzykhys/CoroutineIO][coroutine-io]
