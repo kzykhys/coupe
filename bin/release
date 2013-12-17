@@ -2,7 +2,9 @@
 <?php
 
 use Coupe\Console\Command\PharCommand;
-use Coupe\Console\Command\ReleaseCommand;use Symfony\Component\Console\Application;
+use Coupe\Console\Command\ReleaseCommand;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Debug\ErrorHandler;
 
 if (PHP_SAPI !== 'cli') {
     echo 'Coupé command should be run on the CLI environment.' . PHP_EOL;
@@ -13,6 +15,8 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 } else {
     require __DIR__ . '/../../../autoload.php';
 }
+
+ErrorHandler::register(E_ALL);
 
 $app = new Application('Coupé', 'dev-master');
 
